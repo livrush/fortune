@@ -1,0 +1,2 @@
+Fortune API
+https://helloacm.com/api/fortune/
