@@ -2,6 +2,7 @@
   <div class="fortune">
     <div class="emblem">G</div>
     <h1 class="luck">Good Luck</h1>
+    <hr>
     <div class="reading">Lorem ipsum dolor amet dreamcatcher kinfolk thundercats bespoke biodiesel four loko. Mustache green juice helvetica chartreuse, man bun ramps viral mumblecore leggings gochujang blue bottle raclette sriracha.</div>
   </div>
 </template>

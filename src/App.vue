@@ -24,5 +24,17 @@ export default {
 
 h1, h2, h3, h4, h5, h6 {
   font-family: 'Abril Fatface', cursive;
+  margin: 0;
+  margin-top: 15px;
+}
+
+h1 {
+  line-height: 25px;
+}
+
+hr {
+    border: solid 1px;
+    width: 100%;
+    margin: 15px 0;
 }
 </style>
