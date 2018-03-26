@@ -5,7 +5,6 @@
   "author": "Olivia Sabo-Rush <w.phrush@gmail.com>",
   "private": true,
   "scripts": {
-    "prestart": "npm install",
     "start": "npm run build",
     "dev": "webpack-dev-server --inline --progress --config build/webpack.dev.conf.js",
     "lint": "eslint --ext .js,.vue src",
