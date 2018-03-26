@@ -29,7 +29,32 @@ import {
   groups,
 } from '../groups';
 
+import EmblemGood from './EmblemGood';
 import EmblemNormal from './EmblemNormal';
+import EmblemBad from './EmblemBad';
+
+const luckType = pullRandom(luck);
+let emblemType;
+
+switch (luckType) {
+  case 'Very Good':
+    emblemType = EmblemGood;
+    break;
+  case 'Good':
+    emblemType = EmblemGood;
+    break;
+  case 'Normal':
+    emblemType = EmblemNormal;
+    break;
+  case 'Bad':
+    emblemType = EmblemBad;
+    break;
+  case 'Very Bad':
+    emblemType = EmblemBad;
+    break;
+  default:
+    emblemType = EmblemNormal;
+}
 
 export default {
   name: 'HelloWorld',
@@ -37,12 +62,12 @@ export default {
     themeColors: Array,
   },
   components: {
-    'emblem-normal': EmblemNormal,
+    'emblem-normal': emblemType,
   },
   data() {
     const { themeColors } = this;
     return {
-      luck: pullRandom(luck),
+      luck: luckType,
       verb: pullRandom(verbs),
       group: pullRandom(groups),
       bgColor: themeColors[0].hues[2],
