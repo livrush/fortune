@@ -1,14 +1,6 @@
 
-<template>  <div class="emblemNormal">
-    <div class="emblem" v-bind:style="{ background: color2, color: color1 }">
-      <div class="line line-one" v-bind:style="{ 'border-color': color1 }"></div>
-      <div class="line line-two" v-bind:style="{ 'border-color': color1 }"></div>
-      <div class="line line-three" v-bind:style="{ 'border-color': color1 }"></div>
-      <div class="line line-four" v-bind:style="{ 'border-color': color1 }"></div>
-      <div class="line line-five" v-bind:style="{ 'border-color': color1 }"></div>
-      <div class="line line-six" v-bind:style="{ 'border-color': color1 }"></div>
-    </div>
-  </div>
+<template>
+  <div></div>
 </template>
 
 <script>
@@ -23,22 +15,93 @@ import {
   colors,
 } from '../groups';
 
+import {
+  circleMaker,
+  normalLineMaker,
+} from '../mojsHelpers';
+
 const color1 = pullRandom(colors);
 const color2 = pullRandom(colors);
 
-// $('body').css('background', color1.hues[2]);
-
 export default {
   name: 'EmblemNormal',
+  props: {
+    themeColors: Array,
+  },
   data() {
+    const { themeColors } = this;
     return {
       luck: pullRandom(luck),
       verb: pullRandom(verbs),
       group: pullRandom(groups),
-      bgColor: color1.hues[2],
-      color1: color1.hues[3],
-      color2: color2.hues[1],
+      bgColor: themeColors[0].hues[2],
+      color1: themeColors[0].hues[3],
+      color2: themeColors[1].hues[1],
     };
+  },
+  mounted: function () {
+    const { color1, color2 } = this;
+
+    this.$nextTick(function () {
+      const circle = new mojs.Shape({
+        shape: 'circle',
+        parent: '#emblem',
+        radius: { 0: 62.5 },
+        fill: color2,
+        duration: 1000,
+        delay: 200,
+      });
+
+      function lineMaker(endPosition, endWidth) {
+        return new mojs.Shape({
+          shape: 'line',
+          parent: '#emblem',
+          stroke: color1,
+          fill: 'none',
+          radius: { 0: 62.5 },
+          strokeWidth: 2,
+          angle: -90,
+          duration: 1000,
+          delay: 1200,
+        }).then({
+          fill: 'none',
+          strokeWidth: 2,
+          angle: { [-90]: 0 },
+          duration: 2000,
+          // delay: 500,
+        }).then({
+          duration: 1000,
+          x: 0,
+          y: 62.5,
+        }).then({
+          duration: 1000,
+          strokeWidth: { 2: endWidth },
+          x: 0,
+          y: endPosition,
+        });
+      }
+
+      const normalTimeline = new mojs.Timeline({
+        delay: 500,
+      });
+
+      normalTimeline.add(
+        circleMaker(color2),
+        normalLineMaker(-62.5, 10, color1),
+        normalLineMaker(-50, 9, color1),
+        normalLineMaker(-37.5, 8, color1),
+        normalLineMaker(-25, 7, color1),
+        normalLineMaker(-12.5, 6, color1),
+        normalLineMaker(0, 6, color1),
+        normalLineMaker(12.5, 5, color1),
+        normalLineMaker(25, 4, color1),
+        normalLineMaker(37.5, 3, color1),
+        normalLineMaker(50, 2, color1),
+        normalLineMaker(62.5, 1, color1),
+      );
+
+      normalTimeline.play()
+    })
   },
 };
 </script>
@@ -71,7 +134,7 @@ export default {
   animation-fill-mode: forwards;
 }
 
-.emblem {
+/* .emblem {
   width: 100px;
   height: 100px;
   border-radius: 100%;
@@ -80,5 +143,5 @@ export default {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-}
+} */
 </style>
