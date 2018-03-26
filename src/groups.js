@@ -72,7 +72,7 @@ export const colors = [
   },
   {
     hues: [
-      '#AE8799',
+      '#B19CAA',
       '#94778B',
       '#4E344A',
       '#270722',
@@ -99,7 +99,7 @@ export const colors = [
   },
   {
     hues: [
-      '#FF7733',
+      '#FF8345',
       '#E36414',
       '#A6490F',
       '#7C370B',
@@ -108,7 +108,7 @@ export const colors = [
   },
   {
     hues: [
-      '#FFDD7A',
+      '#FFE392',
       '#FFCA2E',
       '#BA9322',
       '#745C15',
@@ -135,7 +135,7 @@ export const colors = [
   },
   {
     hues: [
-      '#94DADB',
+      '#B1E4E4',
       '#74A4BC',
       '#717EC3',
       '#4A4E69',
@@ -152,13 +152,3 @@ export const colors = [
     name: 'Sea',
   },
 ];
-
-// export default {
-//   pullRandom,
-//   luck,
-//   verbs,
-//   actions,
-//   groups,
-//   feelings,
-//   colors,
-// };
