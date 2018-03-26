@@ -72,7 +72,6 @@ export default {
       group: pullRandom(groups),
       color1: themeColors[0].hues[3],
       color2: themeColors[1].hues[1],
-      themeColors,
     };
   },
 };
