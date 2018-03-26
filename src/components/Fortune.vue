@@ -1,14 +1,13 @@
 <template>
   <div class="fortune">
-    <h1>Fortune</h1>
     <div class="fortune-outer" v-bind:style="{ background: color1, color: color2 }">
       <div class="fortune-inner" v-bind:style="{ 'border-color': color2 }">
         <div class="card-flair flair-top-left" v-bind:style="{ background: color2 }"></div>
         <div class="card-flair flair-top-right" v-bind:style="{ background: color2 }"></div>
         <div class="card-flair flair-bottom-left" v-bind:style="{ background: color2 }"></div>
         <div class="card-flair flair-bottom-right" v-bind:style="{ background: color2 }"></div>
-        <div class="emblem" v-bind:style="{ background: color2, color: color1 }">
-
+        <div id="emblem" class="emblem">
+          <emblem-normal :themeColors="themeColors" />
         </div>
         <h2 class="luck">{{ luck }} Luck</h2>
         <hr>
@@ -18,6 +17,7 @@
         <div class="reading">Mustache green juice helvetica.</div>
       </div>
     </div>
+
   </div>
 </template>
 
@@ -27,27 +27,28 @@ import {
   luck,
   verbs,
   groups,
-  colors,
 } from '../groups';
 
-const color1 = pullRandom(colors);
-const color2 = pullRandom(colors);
-
-// $('body').css('background', color1.hues[2]);
+import EmblemNormal from './EmblemNormal';
 
 export default {
   name: 'HelloWorld',
   props: {
-    themeColors: Object,
+    themeColors: Array,
+  },
+  components: {
+    'emblem-normal': EmblemNormal,
   },
   data() {
+    const { themeColors } = this;
     return {
       luck: pullRandom(luck),
       verb: pullRandom(verbs),
       group: pullRandom(groups),
-      bgColor: color1.hues[2],
-      color1: color1.hues[3],
-      color2: color2.hues[1],
+      bgColor: themeColors[0].hues[2],
+      color1: themeColors[0].hues[3],
+      color2: themeColors[1].hues[1],
+      themeColors,
     };
   },
 };
@@ -95,12 +96,13 @@ export default {
 }
 
 .emblem {
-  background: #270722;
   margin: 0 auto;
   font-size: 6em;
   height: 125px;
   width: 125px;
   border-radius: 50%;
+  position: relative;
+  overflow: hidden;
 }
 
 .card-flair {
