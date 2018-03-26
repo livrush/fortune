@@ -1,6 +1,5 @@
 <template>
   <div id="app" v-bind:style="dynamicStyle">
-    <!-- <img src="./assets/logo.png"> -->
     <h1>Fortune</h1>
     <router-view :themeColors="themeColors"/>
   </div>
@@ -20,12 +19,12 @@ export default {
   name: 'app',
   computed: {
     themeColors() {
-      return color1;
+      return [color1, color2];
     },
     dynamicStyle() {
       return {
-        background: color1.hues[3],
-        color: color2.hues[1],
+        background: color1.hues[0],
+        color: color2.hues[3],
       };
     },
   },
