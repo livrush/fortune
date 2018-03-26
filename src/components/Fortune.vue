@@ -70,7 +70,6 @@ export default {
       luck: luckType,
       verb: pullRandom(verbs),
       group: pullRandom(groups),
-      bgColor: themeColors[0].hues[2],
       color1: themeColors[0].hues[3],
       color2: themeColors[1].hues[1],
       themeColors,
