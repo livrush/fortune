@@ -1,6 +1,6 @@
 
 <template>  
-  <div></div>
+  <div>Bad</div>
 </template>
 
 <script>
@@ -14,12 +14,6 @@ import {
   groups,
   colors,
 } from '../groups';
-
-  import {
-    circleMaker,
-    goodLineMaker,
-    goodCurveMaker,
-  } from '../mojsHelpers';
 
 const color1 = pullRandom(colors);
 const color2 = pullRandom(colors);
@@ -44,28 +38,65 @@ export default {
     const { color1, color2 } = this;
 
     this.$nextTick(function () {
-      const timeline = new mojs.Timeline({
-        delay: 500,
+      const circle = new mojs.Shape({
+        shape: 'circle',
         parent: '#emblem',
+        radius: { 0: 62.5 },
+        fill: color2,
+        duration: 1000,
+        delay: 200,
       });
 
-      timeline.add(
-        circleMaker(color2),
-        goodLineMaker(2, color1),
-        goodCurveMaker(70, 200, -70, 100, 200, 4, color1),
-        goodCurveMaker(70, 200, 70, 100, 200, 4, color1),
-        goodCurveMaker(90, 155, -90, 100, 400, 6, color1),
-        goodCurveMaker(90, 155, 90, 100, 400, 6, color1),
-        goodCurveMaker(100, 115, -100, 100, 600, 8, color1),
-        goodCurveMaker(100, 115, 100, 100, 600, 8, color1),
-        goodCurveMaker(100, 80, -100, 100, 800, 10, color1),
-        goodCurveMaker(100, 80, 100, 100, 800, 10, color1),
-        goodCurveMaker(80, 40, -80, 100, 1000, 12, color1),
-        goodCurveMaker(80, 40, 80, 100, 1000, 12, color1),
+      function lineMaker(endPosition, endWidth) {
+        return new mojs.Shape({
+          shape: 'line',
+          parent: '#emblem',
+          stroke: color1,
+          fill: 'none',
+          radius: { 0: 62.5 },
+          strokeWidth: 2,
+          angle: -90,
+          duration: 1000,
+          delay: 1200,
+        }).then({
+          fill: 'none',
+          strokeWidth: 2,
+          angle: { [-90]: 0 },
+          duration: 2000,
+          // delay: 500,
+        }).then({
+          duration: 1000,
+          x: 0,
+          y: 62.5,
+        }).then({
+          duration: 1000,
+          strokeWidth: { 2: endWidth },
+          x: 0,
+          y: endPosition,
+        });
+      }
+
+      const normalTimeline = new mojs.Timeline({
+        delay: 500,
+      });
+
+      normalTimeline.add(
+        circle,
+        lineMaker(-62.5, 10),
+        lineMaker(-50, 9),
+        lineMaker(-37.5, 8),
+        lineMaker(-25, 7),
+        lineMaker(-12.5, 6),
+        lineMaker(0, 6),
+        lineMaker(12.5, 5),
+        lineMaker(25, 4),
+        lineMaker(37.5, 3),
+        lineMaker(50, 2),
+        lineMaker(62.5, 1)
       );
 
-      timeline.play()
-    });
+      normalTimeline.play()
+    })
   },
 };
 </script>
