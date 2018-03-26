@@ -23,8 +23,8 @@ export default {
     },
     dynamicStyle() {
       return {
-        background: color1.hues[0],
-        color: color2.hues[3],
+        background: color2.hues[0],
+        color: color1.hues[3],
       };
     },
   },
@@ -37,6 +37,7 @@ body {
 }
 
 #app {
+  box-sizing: border-box;
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
