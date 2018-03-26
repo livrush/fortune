@@ -52,16 +52,18 @@ export default {
       timeline.add(
         circleMaker(color2),
         goodLineMaker(2, color1),
-        goodCurveMaker(70, 200, -70, 100, 200, 4, color1),
-        goodCurveMaker(70, 200, 70, 100, 200, 4, color1),
-        goodCurveMaker(90, 155, -90, 100, 400, 6, color1),
-        goodCurveMaker(90, 155, 90, 100, 400, 6, color1),
-        goodCurveMaker(100, 115, -100, 100, 600, 8, color1),
-        goodCurveMaker(100, 115, 100, 100, 600, 8, color1),
-        goodCurveMaker(100, 80, -100, 100, 800, 10, color1),
-        goodCurveMaker(100, 80, 100, 100, 800, 10, color1),
-        goodCurveMaker(80, 40, -80, 100, 1000, 12, color1),
-        goodCurveMaker(80, 40, 80, 100, 1000, 12, color1),
+        goodCurveMaker(40, 175, -40, 62.5, 200, 3, color1),
+        goodCurveMaker(40, 175, 40, 62.5, 200, 3, color1),
+        goodCurveMaker(75, 150, -75, 62.5, 200, 4, color1),
+        goodCurveMaker(75, 150, 75, 62.5, 200, 4, color1),
+        goodCurveMaker(90, 120, -90, 62.5, 400, 5, color1),
+        goodCurveMaker(90, 120, 90, 62.5, 400, 5, color1),
+        goodCurveMaker(100, 95, -100, 62.5, 600, 6, color1),
+        goodCurveMaker(100, 95, 100, 62.5, 600, 6, color1),
+        goodCurveMaker(100, 65, -100, 62.5, 800, 8, color1),
+        goodCurveMaker(100, 65, 100, 62.5, 800, 8, color1),
+        goodCurveMaker(80, 35, -80, 62.5, 1000, 9, color1),
+        goodCurveMaker(80, 35, 80, 62.5, 1000, 9, color1),
       );
 
       timeline.play()
