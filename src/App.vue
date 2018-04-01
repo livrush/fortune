@@ -1,6 +1,9 @@
 <template>
   <div id="app" v-bind:style="dynamicStyle">
-    <h1>Daily Fortune</h1>
+    <header class="header" v-bind:style="headerStyle">
+      <h1>Daily Fortune</h1>
+    </header>
+    <h1 class="lower-header">Daily Fortune</h1>
     <router-view :themeColors="themeColors"/>
   </div>
 </template>
@@ -23,8 +26,14 @@ export default {
     },
     dynamicStyle() {
       return {
-        background: color2.hues[0],
+        background: color2.hues[1],
         color: color1.hues[3],
+      };
+    },
+    headerStyle() {
+      return {
+        background: color1.hues[3],
+        color: color2.hues[1],
       };
     },
   },
@@ -42,7 +51,7 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  padding: 75px 0;
+  /* padding: 75px 0; */
   height: 100vh;
   width: 100vw;
   background: blue;
@@ -63,5 +72,20 @@ hr {
     border: solid 1.5px;
     width: 100%;
     margin: 10px 0;
+}
+
+.header {
+  margin-bottom: 25px;
+  padding-top: 25px;
+  position: relative;
+  overflow: hidden;
+}
+
+.header h1 {
+  margin: 0
+}
+
+.lower-header {
+  margin-top: -51px;
 }
 </style>
