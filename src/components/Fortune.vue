@@ -1,6 +1,6 @@
 <template>
   <div class="fortune">
-    <div class="fortune-outer" v-bind:style="{ background: color1, color: color2 }">
+    <div class="fortune-outer" v-bind:style="fortuneStyles">
       <div class="fortune-inner" v-bind:style="{ 'border-color': color2 }">
         <div class="card-flair flair-top-left" v-bind:style="{ background: color2 }"></div>
         <div class="card-flair flair-top-right" v-bind:style="{ background: color2 }"></div>
@@ -74,6 +74,18 @@ export default {
       color2: themeColors[1].hues[1],
     };
   },
+  computed: {
+    fortuneStyles() {
+      const { themeColors } = this;
+      const color1 = themeColors[0].hues[3];
+      const color2 = themeColors[1].hues[1];
+      return {
+        'box-shadow': `2px 2px 14px ${color1}`,
+        background: color1,
+        color: color2,
+      };
+    },
+  },
 };
 </script>
 
@@ -93,6 +105,7 @@ export default {
   animation-duration: 1s;
   animation-iteration-count: 1;
   animation-fill-mode: both;
+  margin-top: 25px;
 }
 
 .fortune-outer {
