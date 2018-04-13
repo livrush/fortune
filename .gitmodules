@@ -1,0 +1,3 @@
+[submodule "fortune-live"]
+	path = fortune-live
+	url = https://github.com/livrush/fortune-live.git
