@@ -1,6 +1,6 @@
 
 <template>  
-  <div>Bad</div>
+  <div></div>
 </template>
 
 <script>
