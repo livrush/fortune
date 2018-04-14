@@ -13,8 +13,7 @@
         <hr>
         <div class="reading">{{ verb }} {{ group }}</div>
         <p></p>
-        <div class="reading">Lorem ipsum dolor amet dreamcatcher kinfolk thundercats bespoke biodiesel four loko.</div>
-        <div class="reading">Mustache green juice helvetica.</div>
+        <div class="reading">{{ fortune }}</div>
       </div>
     </div>
 
@@ -27,6 +26,16 @@ import {
   luck,
   verbs,
   groups,
+  sentenceStarts,
+  x,
+  pronouns,
+  preposition,
+  // actions,
+  verbsBase,
+  verbsPast,
+  verbsPastParticiple,
+  nouns,
+  determiners,
 } from '../groups';
 
 import EmblemGood from './EmblemGood';
@@ -35,6 +44,8 @@ import EmblemBad from './EmblemBad';
 
 const luckType = pullRandom(luck);
 let emblemType;
+const fortune = `${pullRandom(determiners)} ${pullRandom(nouns)} ${pullRandom(verbsPastParticiple)} BECAUSE ${pullRandom(preposition)} ${pullRandom(nouns)} ${pullRandom(verbsPastParticiple)} ${pullRandom(pronouns)} AND ${pullRandom(pronouns)} ${pullRandom(verbsBase)} ${pullRandom(preposition)} ${pullRandom(nouns)} .`;
+// const fortune = `${pullRandom(sentenceStarts)} ${pullRandom(x)} ${pullRandom(pronouns)} ${pullRandom(verbsBase)} ${pullRandom(preposition)} ${pullRandom(nouns)} .`;
 
 switch (luckType) {
   case 'Very Good':
@@ -70,6 +81,7 @@ export default {
       luck: luckType,
       verb: pullRandom(verbs),
       group: pullRandom(groups),
+      fortune,
       color1: themeColors[0].hues[3],
       color2: themeColors[1].hues[1],
     };
