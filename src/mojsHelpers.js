@@ -12,14 +12,28 @@ export function circleMaker(fill) {
 }
 
 export function badCircleMaker(fill) {
-  return new mojs.Shape({
+  const Circle = new mojs.Shape({
+    delay: 4400,
+    fill: 'transparent',
     parent: '#emblem',
     shape: 'circle',
     radius: 23,
-    fill,
-    duration: 1000,
-    delay: 200,
   });
+
+  for (let i = 10; i > 0; i -= 1) {
+    Circle.then({
+      duration: i * 15 * 2,
+    });
+  }
+
+  debugger;
+
+  Circle.then({
+    duration: 50,
+    fill: { transparent: fill },
+  });
+
+  return Circle;
 }
 
 export function diagonalLineMaker(color, y, delay) {
@@ -186,41 +200,28 @@ export function badLineMaker(sWidth, color) {
 
 export function badLineMaker2(sWidth, color) {
   const Line = new mojs.Shape({
-    angle: 90,
-    delay: 1200,
+    angle: 420,
+    delay: 4400,
     fill: 'none',
-    duration: 1000,
     parent: '#emblem',
     radius: { 0: 23 },
     shape: 'line',
     strokeWidth: 2,
-  })
-  .then({
-    angle: { 90: 180 },
-    duration: 2000,
-  })
-  .then({
-    angle: { 180: 415 },
-    duration: 500,
   });
-  
+
   for (let i = 10; i > 0; i -= 1) {
     Line.then({
-      angle: { 415: 410 },
-      duration: i * 15,
-    })
-    .then({
-      duration: i * 15,
+      duration: i * 15 * 2,
     });
   }
-  
+
   Line.then({
     stroke: color,
   })
   .then({
     angle: { 420: 480 },
     duration: 200,
-  })
+  });
 
   return Line;
 }
