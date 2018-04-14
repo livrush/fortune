@@ -51,10 +51,8 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  /* padding: 75px 0; */
   height: 100vh;
   width: 100vw;
-  background: blue;
   font-family: 'Josefin Sans', cursive;
 }
 
