@@ -55,7 +55,7 @@ module.exports = {
     // Paths
     assetsRoot: path.resolve(__dirname, '../fortune-live'),
     assetsSubDirectory: 'static',
-    assetsPublicPath: '.f/',
+    assetsPublicPath: './',
 
     /**
      * Source Maps

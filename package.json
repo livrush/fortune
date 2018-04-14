@@ -5,11 +5,10 @@
   "author": "Olivia Sabo-Rush <w.phrush@gmail.com>",
   "private": true,
   "scripts": {
-    "dev": "webpack-dev-server --inline --progress --config build/webpack.dev.conf.js",
-    "start": "echo hello",
+    "start": "webpack-dev-server --inline --progress --config build/webpack.dev.conf.js",
+    "server": "npm run build && node server.js",
     "lint": "eslint --ext .js,.vue src",
-    "build": "node build/build.js",
-    "heroku-postbuild": "node build/build.js"
+    "build": "node build/build.js"
   },
   "dependencies": {
     "mo-js": "^0.288.2",

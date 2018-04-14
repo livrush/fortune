@@ -11,6 +11,68 @@ export function circleMaker(fill) {
   });
 }
 
+export function diagonalLineMaker(color, y, delay) {
+  return new mojs.Shape({
+    angle: -35,
+    duration: 500,
+    fill: 'none',
+    parent: '#card-back',
+    radius: 200,
+    shape: 'line',
+    stroke: { transparent: color },
+    strokeWidth: { 0: 3 },
+    y,
+  })
+  .then({
+    delay,
+    duration: 500,
+    strokeWidth: { 3: 14 },
+  })
+  .then({
+    duration: 500,
+    strokeWidth: { 14: 3 },
+  })
+  .then({
+    duration: 500,
+    strokeWidth: { 3: 14 },
+  })
+  .then({
+    duration: 500,
+    strokeWidth: { 14: 3 },
+  });
+  // .then({
+  //   angle: { '-35': 35 },
+  //   duration: 2000,
+  // })
+  // .then({
+  //   angle: { 35: -35 },
+  //   duration: 2000,
+  // })
+  // .then({
+  //   angle: { '-35': 35 },
+  //   duration: 2000,
+  // })
+  // .then({
+  //   angle: { 35: -35 },
+  //   duration: 2000,
+  // });
+  // .then({
+  //   duration: 500,
+  //   angle: { 180: 360 },
+  // })
+  // .then({
+  //   duration: 1000,
+  //   x: 0,
+  //   y: 62.5,
+  // })
+  // .then({
+  //   duration: 1000,
+  //   strokeWidth: { 2: endWidth },
+  //   x: 0,
+  //   y: endPosition,
+  // });
+}
+
 export function normalLineMaker(endPosition, endWidth, color) {
   return new mojs.Shape({
     angle: 90,
