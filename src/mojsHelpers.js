@@ -138,6 +138,41 @@ export function goodLineMaker(sWidth, color) {
   });
 }
 
+export function badLineMaker(sWidth, color) {
+  const Line = new mojs.Shape({
+    angle: 90,
+    delay: 1200,
+    fill: 'none',
+    duration: 1000,
+    parent: '#emblem',
+    radius: { 0: 62.5 },
+    shape: 'line',
+    stroke: color,
+    strokeWidth: 2,
+  })
+  .then({
+    angle: { 90: 180 },
+    duration: 2000,
+  })
+  .then({
+    angle: { 180: 415 },
+    duration: 500,
+  });
+
+  for (let i = 10; i > 0; i -= 1) {
+    Line.then({
+      angle: { 415: 410 },
+      duration: i * 15,
+    })
+    .then({
+      angle: { 410: 420 },
+      duration: i * 15,
+    })
+  }
+
+  return Line;
+}
+
 export function goodCurveMaker(width, height, x, y, delay, sWidth, color) {
   return new mojs.Shape({
     parent: '#emblem',
