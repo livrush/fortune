@@ -26,13 +26,13 @@ import {
   luck,
   verbs,
   groups,
-  sentenceStarts,
-  x,
+  // sentenceStarts,
+  // x,
   pronouns,
   preposition,
   // actions,
   verbsBase,
-  verbsPast,
+  // verbsPast,
   verbsPastParticiple,
   nouns,
   determiners,
@@ -44,8 +44,11 @@ import EmblemBad from './EmblemBad';
 
 const luckType = pullRandom(luck);
 let emblemType;
-const fortune = `${pullRandom(determiners)} ${pullRandom(nouns)} ${pullRandom(verbsPastParticiple)} BECAUSE ${pullRandom(preposition)} ${pullRandom(nouns)} ${pullRandom(verbsPastParticiple)} ${pullRandom(pronouns)} AND ${pullRandom(pronouns)} ${pullRandom(verbsBase)} ${pullRandom(preposition)} ${pullRandom(nouns)} .`;
-// const fortune = `${pullRandom(sentenceStarts)} ${pullRandom(x)} ${pullRandom(pronouns)} ${pullRandom(verbsBase)} ${pullRandom(preposition)} ${pullRandom(nouns)} .`;
+const fortune = `${pullRandom(determiners)} ${pullRandom(nouns)} ${pullRandom(verbsPastParticiple)}
+BECAUSE ${pullRandom(preposition)} ${pullRandom(nouns)} ${pullRandom(verbsPastParticiple)} ${pullRandom(pronouns)}
+AND ${pullRandom(pronouns)} ${pullRandom(verbsBase)} ${pullRandom(preposition)} ${pullRandom(nouns)} .`;
+// const fortune = `${pullRandom(sentenceStarts)} ${pullRandom(x)} ${pullRandom(pronouns)}
+// ${pullRandom(verbsBase)} ${pullRandom(preposition)} ${pullRandom(nouns)} .`;
 
 switch (luckType) {
   case 'Very Good':
