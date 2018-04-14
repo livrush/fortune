@@ -51,9 +51,9 @@ export default {
         parent: '#emblem',
       });
 
-      for(var i = -12; i < 13; i++) {
+      for (let i = -12; i < 13; i += 1) {
         timeline.add(
-          diagonalLineMaker(color2, i * 21, (i + 13) * 50)
+          diagonalLineMaker(color2, i * 21, (i + 13) * 50),
         );
       }
 
