@@ -1,9 +1,9 @@
 <template>
   <div id="app" v-bind:style="dynamicStyle">
     <header class="header" v-bind:style="headerStyle">
-      <h1>Daily Fortune</h1>
+      <h1>Fortune</h1>
     </header>
-    <h1 class="lower-header">Daily Fortune</h1>
+    <h1 class="lower-header">Fortune</h1>
     <router-view :themeColors="themeColors"/>
   </div>
 </template>
