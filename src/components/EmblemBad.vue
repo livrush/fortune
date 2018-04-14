@@ -8,6 +8,10 @@
 import mojs from 'mo-js';
 
 import {
+  badLineMaker
+} from '../mojsHelpers';
+
+import {
   pullRandom,
   luck,
   verbs,
@@ -82,17 +86,18 @@ export default {
 
       normalTimeline.add(
         circle,
-        lineMaker(-62.5, 10),
-        lineMaker(-50, 9),
-        lineMaker(-37.5, 8),
-        lineMaker(-25, 7),
-        lineMaker(-12.5, 6),
-        lineMaker(0, 6),
-        lineMaker(12.5, 5),
-        lineMaker(25, 4),
-        lineMaker(37.5, 3),
-        lineMaker(50, 2),
-        lineMaker(62.5, 1)
+        badLineMaker(2, color1),
+        // lineMaker(-62.5, 10),
+        // lineMaker(-50, 9),
+        // lineMaker(-37.5, 8),
+        // lineMaker(-25, 7),
+        // lineMaker(-12.5, 6),
+        // lineMaker(0, 6),
+        // lineMaker(12.5, 5),
+        // lineMaker(25, 4),
+        // lineMaker(37.5, 3),
+        // lineMaker(50, 2),
+        // lineMaker(62.5, 1)
       );
 
       normalTimeline.play()
