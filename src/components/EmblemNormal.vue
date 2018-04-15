@@ -43,62 +43,21 @@ export default {
     const { color1, color2 } = this;
 
     this.$nextTick(function () {
-      const circle = new mojs.Shape({
-        shape: 'circle',
-        parent: '#emblem',
-        radius: { 0: 62.5 },
-        fill: color2,
-        duration: 1000,
-        delay: 200,
-      });
-
-      function lineMaker(endPosition, endWidth) {
-        return new mojs.Shape({
-          shape: 'line',
-          parent: '#emblem',
-          stroke: color1,
-          fill: 'none',
-          radius: { 0: 62.5 },
-          strokeWidth: 2,
-          angle: -90,
-          duration: 1000,
-          delay: 1200,
-        }).then({
-          fill: 'none',
-          strokeWidth: 2,
-          angle: { [-90]: 0 },
-          duration: 2000,
-          // delay: 500,
-        }).then({
-          duration: 1000,
-          x: 0,
-          y: 62.5,
-        }).then({
-          duration: 1000,
-          strokeWidth: { 2: endWidth },
-          x: 0,
-          y: endPosition,
-        });
-      }
-
       const normalTimeline = new mojs.Timeline({
         delay: 500,
       });
 
       normalTimeline.add(
         circleMaker(color2),
-        normalLineMaker(-62.5, 10, color1),
-        normalLineMaker(-50, 9, color1),
-        normalLineMaker(-37.5, 8, color1),
-        normalLineMaker(-25, 7, color1),
-        normalLineMaker(-12.5, 6, color1),
         normalLineMaker(0, 6, color1),
-        normalLineMaker(12.5, 5, color1),
-        normalLineMaker(25, 4, color1),
-        normalLineMaker(37.5, 3, color1),
-        normalLineMaker(50, 2, color1),
-        normalLineMaker(62.5, 1, color1),
       );
+
+      for (let i = 1; i < 5; i += 1) {
+        normalTimeline.add(
+          normalLineMaker(13.5 * i, 6 - i, color1),
+          normalLineMaker(-13.5 * i, i + 6, color1),
+        );
+      }
 
       normalTimeline.play()
     })
