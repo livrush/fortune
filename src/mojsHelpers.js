@@ -14,17 +14,25 @@ export function circleMaker(fill) {
 export function diagonalLineMaker(color, y, delay) {
   return new mojs.Shape({
     angle: -35,
+    delay,
     duration: 500,
     fill: 'none',
     parent: '#card-back',
     radius: 200,
     shape: 'line',
     stroke: { transparent: color },
-    strokeWidth: { 0: 3 },
+    strokeWidth: { 0: 14 },
     y,
   })
   .then({
-    delay,
+    duration: 500,
+    strokeWidth: { 14: 3 },
+  })
+  .then({
+    duration: 500,
+    strokeWidth: 3,
+  })
+  .then({
     duration: 500,
     strokeWidth: { 3: 14 },
   })
