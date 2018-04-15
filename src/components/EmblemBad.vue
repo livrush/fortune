@@ -8,6 +8,13 @@
 import mojs from 'mo-js';
 
 import {
+  circleMaker,
+  badLineMaker,
+  badLineMaker2,
+  badCircleMaker,
+} from '../mojsHelpers';
+
+import {
   pullRandom,
   luck,
   verbs,
@@ -38,14 +45,6 @@ export default {
     const { color1, color2 } = this;
 
     this.$nextTick(function () {
-      const circle = new mojs.Shape({
-        shape: 'circle',
-        parent: '#emblem',
-        radius: { 0: 62.5 },
-        fill: color2,
-        duration: 1000,
-        delay: 200,
-      });
 
       function lineMaker(endPosition, endWidth) {
         return new mojs.Shape({
@@ -81,18 +80,10 @@ export default {
       });
 
       normalTimeline.add(
-        circle,
-        lineMaker(-62.5, 10),
-        lineMaker(-50, 9),
-        lineMaker(-37.5, 8),
-        lineMaker(-25, 7),
-        lineMaker(-12.5, 6),
-        lineMaker(0, 6),
-        lineMaker(12.5, 5),
-        lineMaker(25, 4),
-        lineMaker(37.5, 3),
-        lineMaker(50, 2),
-        lineMaker(62.5, 1)
+        circleMaker(color2),
+        badLineMaker(2, color1),
+        badCircleMaker(color2),
+        badLineMaker2(2, color1),
       );
 
       normalTimeline.play()

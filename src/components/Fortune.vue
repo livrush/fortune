@@ -7,7 +7,7 @@
         <div class="card-flair flair-bottom-left" v-bind:style="{ background: color2 }"></div>
         <div class="card-flair flair-bottom-right" v-bind:style="{ background: color2 }"></div>
         <div id="emblem" class="emblem">
-          <emblem-normal :themeColors="themeColors" />
+          <emblem :themeColors="themeColors" />
         </div>
         <h2 class="luck">{{ luck }} Luck</h2>
         <hr>
@@ -70,13 +70,15 @@ switch (luckType) {
     emblemType = EmblemNormal;
 }
 
+emblemType = EmblemBad;
+
 export default {
   name: 'HelloWorld',
   props: {
     themeColors: Array,
   },
   components: {
-    'emblem-normal': emblemType,
+    emblem: emblemType,
   },
   data() {
     const { themeColors } = this;
