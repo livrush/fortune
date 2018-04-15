@@ -81,12 +81,12 @@ export function normalLineMaker(endPosition, endWidth, color) {
     angle: { 180: 360 },
   })
   .then({
-    duration: 1000,
+    duration: 500,
     x: 0,
-    y: 62.5,
+    y: 65,
   })
   .then({
-    duration: 1000,
+    duration: 1500,
     strokeWidth: { 2: endWidth },
     x: 0,
     y: endPosition,
