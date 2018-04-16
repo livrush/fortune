@@ -178,8 +178,6 @@ export function badCircleMaker(fill) {
     });
   }
 
-  debugger;
-
   Circle.then({
     duration: 50,
     // fill: { transparent: fill },
