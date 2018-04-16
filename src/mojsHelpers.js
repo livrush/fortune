@@ -128,10 +128,6 @@ export function goodLineMaker(sWidth, color) {
   });
 }
 
-// ! GOOD ///////////////////////////////////////////////
-// ! GOOD ///////////////////////////////////////////////
-// ! GOOD ///////////////////////////////////////////////
-
 export function goodCurveMaker(width, height, x, y, delay, sWidth, color) {
   return new mojs.Shape({
     parent: '#emblem',
@@ -162,6 +158,10 @@ export function goodCurveMaker(width, height, x, y, delay, sWidth, color) {
   });
 }
 
+// ! BAD ///////////////////////////////////////////////
+// ! BAD ///////////////////////////////////////////////
+// ! BAD ///////////////////////////////////////////////
+
 export function badCircleMaker(fill) {
   const Circle = new mojs.Shape({
     delay: 4400,
@@ -188,10 +188,6 @@ export function badCircleMaker(fill) {
   return Circle;
 }
 
-// ! BAD ///////////////////////////////////////////////
-// ! BAD ///////////////////////////////////////////////
-// ! BAD ///////////////////////////////////////////////
-
 export function badLineMaker(sWidth, color) {
   const Line = new mojs.Shape({
     angle: 90,
@@ -217,11 +213,11 @@ export function badLineMaker(sWidth, color) {
   for (let i = 10; i > 0; i -= 1) {
     Line.then({
       angle: { 415: 410 },
-      duration: i * 15,
+      duration: i * 20,
     })
     .then({
       angle: { 410: 420 },
-      duration: i * 15,
+      duration: i * 20,
     });
   }
 
@@ -254,11 +250,11 @@ export function badLineMaker2(sWidth, color) {
   for (let i = 10; i > 0; i -= 1) {
     Line.then({
       angle: { 415: 410 },
-      duration: i * 15,
+      duration: i * 20,
     })
     .then({
       angle: { 410: 420 },
-      duration: i * 15,
+      duration: i * 20,
     });
   }
 
