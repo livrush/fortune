@@ -15,10 +15,6 @@
 <script>
 import $ from 'jquery';
 
-// import {
-//   pullRandom,
-// } from '../groups';
-
 import FortuneFront from './FortuneFront';
 import FortuneBack from './FortuneBack';
 
@@ -67,7 +63,6 @@ export default {
 };
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 @keyframes slide {
   0%     { transform: translate(0, 0); }
