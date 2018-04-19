@@ -1,19 +1,25 @@
 <template>
   <div class="fortune">
-    <div class="fortune-outer" v-bind:style="fortuneStyles">
-      <div class="fortune-inner" v-bind:style="{ 'border-color': color2 }">
-        <div class="card-flair flair-top-left" v-bind:style="{ background: color2 }"></div>
-        <div class="card-flair flair-top-right" v-bind:style="{ background: color2 }"></div>
-        <div class="card-flair flair-bottom-left" v-bind:style="{ background: color2 }"></div>
-        <div class="card-flair flair-bottom-right" v-bind:style="{ background: color2 }"></div>
-        <div id="emblem" class="emblem">
-          <emblem :themeColors="themeColors" />
+    <div class="fortune-wrapper fade-in-down">
+      <div class="fortune-outer slide" v-bind:style="fortuneStyles">
+        <div class="fortune-inner" v-bind:style="{ 'border-color': color2 }">
+          <div id="fortune-inner-back">
+          </div>
+          <div id="fortune-inner-front">
+            <div class="card-flair flair-top-left" v-bind:style="{ background: color2 }"></div>
+            <div class="card-flair flair-top-right" v-bind:style="{ background: color2 }"></div>
+            <div class="card-flair flair-bottom-left" v-bind:style="{ background: color2 }"></div>
+            <div class="card-flair flair-bottom-right" v-bind:style="{ background: color2 }"></div>
+            <div id="emblem" class="emblem">
+              <emblem :themeColors="themeColors" />
+            </div>
+            <h2 class="luck">{{ luck }} Luck</h2>
+            <hr>
+            <div class="reading">{{ verb }} {{ group }}</div>
+            <p></p>
+            <div class="reading">{{ fortune }}</div>
+          </div>
         </div>
-        <h2 class="luck">{{ luck }} Luck</h2>
-        <hr>
-        <div class="reading">{{ verb }} {{ group }}</div>
-        <p></p>
-        <div class="reading">{{ fortune }}</div>
       </div>
     </div>
 
@@ -37,6 +43,10 @@ import {
   nouns,
   determiners,
 } from '../groups';
+
+import {
+  diagonalLineMaker,
+} from '../mojsHelpers';
 
 import EmblemGood from './EmblemGood';
 import EmblemNormal from './EmblemNormal';
@@ -91,6 +101,25 @@ export default {
       color2: themeColors[1].hues[1],
     };
   },
+  mounted() {
+    const { themeColors } = this;
+    const color2 = themeColors[1].hues[1];
+
+    this.$nextTick(() => {
+      const timeline = new mojs.Timeline({
+        delay: 500,
+        parent: '#emblem',
+      });
+
+      for (let i = -12; i < 13; i += 1) {
+        timeline.add(
+          diagonalLineMaker(color2, i * 21, (i + 13) * 50),
+        );
+      }
+
+      timeline.play();
+    });
+  },
   computed: {
     fortuneStyles() {
       const { themeColors } = this;
@@ -108,13 +137,74 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-@keyframes spinAround {
-  1% {
-    transform: rotate3d(0, 5, 1, 0deg);
-  };
+@keyframes slide {
+  0%     { transform: translate(0, 0); }
+  12.5%  { transform: translate(-2.5px, 2.5px); }
+  25%    { transform: translate(-5px, 0px); }
+  37.5%  { transform: translate(-2.5px, -2.5px); }
+  50%    { transform: translate(0, 0); }
+  62.5%  { transform: translate(2.5px, 2.5px); }
+  75%    { transform: translate(5px, 0px); }
+  87.5%  { transform: translate(2.5px, -2.5px); }
+  100%   { transform: translate(0, 0); }
+}
+
+@keyframes fadeInDown {
+  0% {
+    transform: translateY(-35px);
+    opacity: 0;
+  }
   100% {
-    transform: rotate3d(0, 5, 1, 1turn);
-  };
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes flipIn {
+  0% {
+    transform: rotateY(0deg);
+  }
+  100% {
+    transform: rotateY(00deg);
+  }
+}
+
+@keyframes flipOut {
+  0% {
+    transform: rotateY(90deg);
+  }
+  100% {
+    transform: rotateY(0deg);
+  }
+}
+
+.fade-in-down {
+  animation-name: fadeInDown;
+  animation-duration: 1s;
+  animation-iteration-count: 1;
+  animation-timing-function:linear;
+}
+
+.slide {
+  animation-name: slide;
+  animation-delay: 2s;
+  animation-duration: 10s;
+  animation-iteration-count: infinite;
+  animation-timing-function:linear;
+}
+
+.flip-in {
+  animation-name: flipIn;
+  animation-duration: 1s;
+  animation-iteration-count: 1;
+  animation-timing-function:linear;
+}
+
+.flip-out {
+  animation-name: flipOut;
+  animation-duration: 1s;
+  animation-iteration-count: 1;
+  animation-timing-function:linear;
 }
 
 .fortune {
@@ -146,6 +236,7 @@ export default {
   width: 100%;
   border-radius: 3.5px;
   position: relative;
+  overflow: hidden;
 }
 
 .emblem {
