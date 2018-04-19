@@ -5,15 +5,16 @@
     </header>
     <h1 class="lower-header">Fortune</h1>
     <router-view :themeColors="themeColors"/>
-    <a href="http://pafiu.me" target="_blank">
+    <a id="logo" href="http://pafiu.me" target="_blank">
       <div class="logo" v-bind:style="headerStyle">
-        <img src="./assets/milk.svg" alt="Milk logo">
+        <img class="svg" src="./assets/milk.svg" alt="Milk logo">
       </div>
     </a>
   </div>
 </template>
 
 <script>
+import $ from 'jquery';
 
 import {
   pullRandom,
@@ -42,7 +43,28 @@ export default {
       };
     },
   },
+  mounted() {
+    const { themeColors } = this;
+    const color = themeColors[1].hues[1];
+    $('img.svg').each((index, element) => {
+      const $img = $(element);
+      const imgClass = $img.attr('class');
+      const imgURL = $img.attr('src');
+      $.get(imgURL, (data) => {
+        let $svg = $(data).find('svg');
+        $svg = $svg.attr('class', `${imgClass} replaced-svg`);
+        $svg = $svg.removeAttr('xmlns:a');
+        $img.replaceWith($svg);
+        $('svg rect').css({ stroke: color });
+        $('svg path').css({ stroke: color });
+        // $('svg ellipse').css({ stroke: 'transparent' });
+        $('svg circle').css({ fill: color });
+        $('svg ellipse').css({ fill: color });
+      }, 'xml');
+    });
+  },
 };
+
 </script>
 
 <style>
@@ -96,24 +118,26 @@ hr {
   margin-top: -51px;
 }
 
-.logo {
-  bottom: 20px;
-  height: 50px;
-  left: 50%;
-  position: absolute;
-  transform: translateX(-50%);
-  width: 50px;
-  font-size: 4vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 7.5vh;
-  width: 7.5vh;
-  border-radius: 100%;
+#logo {
+  /* opacity: 0; */
 }
 
-.logo img {
-  height: 4vh;
-  /* width: 100%; */
+.logo {
+  align-items: center;
+  bottom: 20px;
+  border-radius: 100%;
+  box-sizing: border-box;
+  display: flex;
+  height: 7.5vh;
+  justify-content: center;
+  left: 50%;
+  padding: 15px;
+  position: absolute;
+  transform: translateX(-50%);
+  width: 7.5vh;
+}
+
+.logo .svg {
+  height: 100%;
 }
 </style>
