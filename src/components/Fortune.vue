@@ -1,124 +1,56 @@
 <template>
-  <div class="fortune">
-    <div class="fortune-wrapper fade-in-down">
-      <div class="fortune-outer slide" v-bind:style="fortuneStyles">
-        <div class="fortune-inner" v-bind:style="{ 'border-color': color2 }">
-          <div id="fortune-inner-back">
-          </div>
-          <div id="fortune-inner-front">
-            <div class="card-flair flair-top-left" v-bind:style="{ background: color2 }"></div>
-            <div class="card-flair flair-top-right" v-bind:style="{ background: color2 }"></div>
-            <div class="card-flair flair-bottom-left" v-bind:style="{ background: color2 }"></div>
-            <div class="card-flair flair-bottom-right" v-bind:style="{ background: color2 }"></div>
-            <div id="emblem" class="emblem">
-              <emblem :themeColors="themeColors" />
-            </div>
-            <h2 class="luck">{{ luck }} Luck</h2>
-            <hr>
-            <div class="reading">{{ verb }} {{ group }}</div>
-            <p></p>
-            <div class="reading">{{ fortune }}</div>
-          </div>
-        </div>
+  <div class="fortune-wrapper fade-in-down">
+    <div class="fortune slide">
+      <input type="checkbox"  />
+      <div id="fortune-inner-back" class="fortune-side back" v-on:click="flip">
+        <FortuneBack :themeColors="themeColors" />
+      </div>
+      <div id="fortune-inner-front" class="fortune-side front" v-on:click="flip">
+        <FortuneFront :themeColors="themeColors" />
       </div>
     </div>
-
   </div>
 </template>
 
 <script>
-import {
-  pullRandom,
-  luck,
-  verbs,
-  groups,
-  // sentenceStarts,
-  // x,
-  pronouns,
-  preposition,
-  // actions,
-  verbsBase,
-  // verbsPast,
-  verbsPastParticiple,
-  nouns,
-  determiners,
-} from '../groups';
+import $ from 'jquery';
 
-import {
-  diagonalLineMaker,
-} from '../mojsHelpers';
+// import {
+//   pullRandom,
+// } from '../groups';
 
-import EmblemGood from './EmblemGood';
-import EmblemNormal from './EmblemNormal';
-import EmblemBad from './EmblemBad';
+import FortuneFront from './FortuneFront';
+import FortuneBack from './FortuneBack';
 
-const luckType = pullRandom(luck);
-let emblemType;
-const fortune = `${pullRandom(determiners)} ${pullRandom(nouns)} ${pullRandom(verbsPastParticiple)}
-BECAUSE ${pullRandom(preposition)} ${pullRandom(nouns)} ${pullRandom(verbsPastParticiple)} ${pullRandom(pronouns)}
-AND ${pullRandom(pronouns)} ${pullRandom(verbsBase)} ${pullRandom(preposition)} ${pullRandom(nouns)} .`;
-// const fortune = `${pullRandom(sentenceStarts)} ${pullRandom(x)} ${pullRandom(pronouns)}
-// ${pullRandom(verbsBase)} ${pullRandom(preposition)} ${pullRandom(nouns)} .`;
-
-switch (luckType) {
-  case 'Very Good':
-    emblemType = EmblemGood;
-    break;
-  case 'Good':
-    emblemType = EmblemGood;
-    break;
-  case 'Normal':
-    emblemType = EmblemNormal;
-    break;
-  case 'Bad':
-    emblemType = EmblemBad;
-    break;
-  case 'Very Bad':
-    emblemType = EmblemBad;
-    break;
-  default:
-    emblemType = EmblemNormal;
-}
-
-emblemType = EmblemBad;
+let flipped = true;
 
 export default {
-  name: 'HelloWorld',
+  name: 'Fortune',
   props: {
     themeColors: Array,
   },
   components: {
-    emblem: emblemType,
+    FortuneFront,
+    FortuneBack,
   },
   data() {
     const { themeColors } = this;
     return {
-      luck: luckType,
-      verb: pullRandom(verbs),
-      group: pullRandom(groups),
-      fortune,
+      flip() {
+        $('#fortune-inner-back').removeClass('flip-in flip-out');
+        $('#fortune-inner-front').removeClass('flip-in flip-out');
+        if (flipped) {
+          $('#fortune-inner-back').addClass('flip-out');
+          $('#fortune-inner-front').addClass('flip-in');
+        } else {
+          $('#fortune-inner-front').addClass('flip-out');
+          $('#fortune-inner-back').addClass('flip-in');
+        }
+        flipped = !flipped;
+      },
       color1: themeColors[0].hues[3],
       color2: themeColors[1].hues[1],
     };
-  },
-  mounted() {
-    const { themeColors } = this;
-    const color2 = themeColors[1].hues[1];
-
-    this.$nextTick(() => {
-      const timeline = new mojs.Timeline({
-        delay: 500,
-        parent: '#emblem',
-      });
-
-      for (let i = -12; i < 13; i += 1) {
-        timeline.add(
-          diagonalLineMaker(color2, i * 21, (i + 13) * 50),
-        );
-      }
-
-      timeline.play();
-    });
   },
   computed: {
     fortuneStyles() {
@@ -139,13 +71,13 @@ export default {
 <style scoped>
 @keyframes slide {
   0%     { transform: translate(0, 0); }
-  12.5%  { transform: translate(-2.5px, 2.5px); }
-  25%    { transform: translate(-5px, 0px); }
-  37.5%  { transform: translate(-2.5px, -2.5px); }
+  12.5%  { transform: translate(-4px, 4px); }
+  25%    { transform: translate(-8px, 0px); }
+  37.5%  { transform: translate(-4px, -4px); }
   50%    { transform: translate(0, 0); }
-  62.5%  { transform: translate(2.5px, 2.5px); }
-  75%    { transform: translate(5px, 0px); }
-  87.5%  { transform: translate(2.5px, -2.5px); }
+  62.5%  { transform: translate(4px, 4px); }
+  75%    { transform: translate(8px, 0px); }
+  87.5%  { transform: translate(4px, -4px); }
   100%   { transform: translate(0, 0); }
 }
 
@@ -160,22 +92,16 @@ export default {
   }
 }
 
-@keyframes flipIn {
-  0% {
-    transform: rotateY(0deg);
-  }
-  100% {
-    transform: rotateY(00deg);
-  }
+@keyframes flipOut {
+  0%   { transform: rotateY(000deg); z-index: 2; }
+  50%  { transform: rotateY(090deg); z-index: 2; }
+  100% { transform: rotateY(180deg); z-index: 1; }
 }
 
-@keyframes flipOut {
-  0% {
-    transform: rotateY(90deg);
-  }
-  100% {
-    transform: rotateY(0deg);
-  }
+@keyframes flipIn {
+  0%   { transform: rotateY(180deg); z-index: 1; }
+  50%  { transform: rotateY(270deg); z-index: 2; }
+  100% { transform: rotateY(360deg); z-index: 2; }
 }
 
 .fade-in-down {
@@ -187,116 +113,67 @@ export default {
 
 .slide {
   animation-name: slide;
-  animation-delay: 2s;
+  animation-delay: 1s;
   animation-duration: 10s;
   animation-iteration-count: infinite;
   animation-timing-function:linear;
 }
 
 .flip-in {
+  transform-style: preserve-3d;
   animation-name: flipIn;
   animation-duration: 1s;
+  animation-fill-mode: forwards;
   animation-iteration-count: 1;
   animation-timing-function:linear;
 }
 
 .flip-out {
+  transform-style: preserve-3d;
   animation-name: flipOut;
   animation-duration: 1s;
+  animation-fill-mode: forwards;
   animation-iteration-count: 1;
   animation-timing-function:linear;
 }
 
-.fortune {
+.fortune-wrapper {
   animation-name: fadeInDown;
   animation-duration: 1s;
   animation-iteration-count: 1;
   animation-fill-mode: both;
-  margin-top: 25px;
-}
-
-.fortune-outer {
-  color: #270722;
   margin: auto;
+  margin-top: 25px;
+  -webkit-perspective: 1000px;
+  perspective: 1000px;
+  -webkit-transform-style: preserve-3d;
+  transform-style: preserve-3d;
   width: 250px;
   height: 350px;
-  padding: 10px;
-  display: flex;
-  flex-direction: column;
-  align-content: center;
-  text-align: center;
-  border-radius: 5px;
 }
 
-.fortune-inner {
-  border: #270722 3px solid;
-  padding: 10px;
-  box-sizing: border-box;
+.fortune {
+  position: relative;
   height: 100%;
   width: 100%;
-  border-radius: 3.5px;
-  position: relative;
-  overflow: hidden;
+  -webkit-transform-style: preserve-3d;
+  transform-style: preserve-3d;
 }
 
-.emblem {
-  margin: 0 auto;
-  font-size: 6em;
-  height: 125px;
-  width: 125px;
-  border-radius: 50%;
-  position: relative;
-  overflow: hidden;
+input {
+  display: none;
 }
 
-.card-flair {
-  height: 15px;
-  width: 15px;
-  background: #270722;
+.fortune > .back {
+  z-index: 2;
+}
+
+.fortune > .front {
+  z-index: 1;
+}
+
+.fortune-side {
   position: absolute;
-  border-radius: 50%;
-}
-
-.flair-top-left {
-  top: 10px;
-  left: 10px;
-}
-
-.flair-top-right {
-  top: 10px;
-  right: 10px;
-}
-
-.flair-bottom-left {
-  bottom: 10px;
-  left: 10px;
-}
-
-.flair-bottom-right {
-  bottom: 10px;
-  right: 10px;
-}
-
-.luck {
-  /* font-family: 'Abril Fatface', cursive; */
-}
-
-.reading {
-  /* font-family: 'Josefin Sans', cursive; */
-}
-
-h1, h2 {
-  font-weight: normal;
-}
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-li {
-  display: inline-block;
-  margin: 0 10px;
-}
-a {
-  color: #42b983;
+  cursor: pointer;
 }
 </style>
