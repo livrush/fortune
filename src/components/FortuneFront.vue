@@ -67,8 +67,6 @@ switch (luckType) {
     emblemType = EmblemNormal;
 }
 
-emblemType = EmblemBad;
-
 export default {
   name: 'FortuneFront',
   props: {
