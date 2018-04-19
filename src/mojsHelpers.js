@@ -17,12 +17,12 @@ export function circleMaker(fill) {
 // ! BACK ///////////////////////////////////////////////
 
 export function diagonalLineMaker(color, y, delay) {
-  return new mojs.Shape({
+  const Line = new mojs.Shape({
     angle: -35,
     delay,
     duration: 500,
     fill: 'none',
-    parent: '#fortune-inner-back',
+    parent: '#card-back',
     radius: 200,
     shape: 'line',
     stroke: { transparent: color },
@@ -53,6 +53,19 @@ export function diagonalLineMaker(color, y, delay) {
     duration: 500,
     strokeWidth: { 14: 3 },
   });
+
+  setInterval(() => {
+    Line.then({
+      duration: 500,
+      strokeWidth: { 3: 14 },
+    })
+    .then({
+      duration: 500,
+      strokeWidth: { 14: 3 },
+    });
+  }, 5000);
+
+  return Line;
 }
 
 // ! NORMAL ///////////////////////////////////////////////
