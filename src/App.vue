@@ -5,6 +5,11 @@
     </header>
     <h1 class="lower-header">Fortune</h1>
     <router-view :themeColors="themeColors"/>
+    <a href="http://pafiu.me" target="_blank">
+      <div class="logo" v-bind:style="headerStyle">
+        <img src="./assets/milk.svg" alt="Milk logo">
+      </div>
+    </a>
   </div>
 </template>
 
@@ -89,5 +94,26 @@ hr {
 
 .lower-header {
   margin-top: -51px;
+}
+
+.logo {
+  bottom: 20px;
+  height: 50px;
+  left: 50%;
+  position: absolute;
+  transform: translateX(-50%);
+  width: 50px;
+  font-size: 4vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 7.5vh;
+  width: 7.5vh;
+  border-radius: 100%;
+}
+
+.logo img {
+  height: 4vh;
+  /* width: 100%; */
 }
 </style>
