@@ -22,7 +22,7 @@ export function diagonalLineMaker(color, y, delay) {
     delay,
     duration: 500,
     fill: 'none',
-    parent: '#card-back',
+    parent: '#fortune-inner-back',
     radius: 200,
     shape: 'line',
     stroke: { transparent: color },
