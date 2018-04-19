@@ -5,8 +5,8 @@
     </header>
     <h1 class="lower-header">Fortune</h1>
     <router-view :themeColors="themeColors"/>
-    <a id="logo" href="http://pafiu.me" target="_blank">
-      <div class="logo" v-bind:style="headerStyle">
+    <a href="http://pafiu.me" target="_blank">
+      <div class="logo">
         <img class="svg" src="./assets/milk.svg" alt="Milk logo">
       </div>
     </a>
@@ -45,7 +45,7 @@ export default {
   },
   mounted() {
     const { themeColors } = this;
-    const color = themeColors[1].hues[1];
+    const color = themeColors[0].hues[3];
     $('img.svg').each((index, element) => {
       const $img = $(element);
       const imgClass = $img.attr('class');
@@ -55,11 +55,10 @@ export default {
         $svg = $svg.attr('class', `${imgClass} replaced-svg`);
         $svg = $svg.removeAttr('xmlns:a');
         $img.replaceWith($svg);
-        $('svg rect').css({ stroke: color });
-        $('svg path').css({ stroke: color });
-        // $('svg ellipse').css({ stroke: 'transparent' });
-        $('svg circle').css({ fill: color });
-        $('svg ellipse').css({ fill: color });
+        $('.svg rect').css({ stroke: color });
+        $('.svg path').css({ stroke: color });
+        $('.svg circle').css({ fill: color });
+        $('.svg ellipse').css({ fill: color });
       }, 'xml');
     });
   },
@@ -118,10 +117,6 @@ hr {
   margin-top: -51px;
 }
 
-#logo {
-  /* opacity: 0; */
-}
-
 .logo {
   align-items: center;
   bottom: 20px;
@@ -131,7 +126,6 @@ hr {
   height: 7.5vh;
   justify-content: center;
   left: 50%;
-  padding: 15px;
   position: absolute;
   transform: translateX(-50%);
   width: 7.5vh;
