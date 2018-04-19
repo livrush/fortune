@@ -66,6 +66,10 @@ h1 {
   line-height: 25px;
 }
 
+a {
+  color: inherit;
+}
+
 hr {
     border: solid 1.5px;
     width: 100%;
