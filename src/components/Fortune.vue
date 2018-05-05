@@ -1,8 +1,7 @@
 <template>
   <div id="fortune-wrapper" class="fortune-wrapper fade-in-down" v-on:click="flip">
-      <div class="fortune slide">
-    <div class="fortune-flipper">
-        <!-- <input type="checkbox"  /> -->
+    <div class="fortune slide">
+      <div class="fortune-flipper">
         <div id="fortune-inner-back" class="fortune-side back">
           <FortuneBack :themeColors="themeColors" />
         </div>
@@ -59,51 +58,84 @@ export default {
 <style scoped>
 @keyframes slide {
   0%     {
-    -webkit-transform: translate(0, 0);
     transform: translate(0, 0);
+    -o-transform: translate(0, 0);
+    -ms-transform: translate(0, 0);
+    -moz-transform: translate(0, 0);
+    -webkit-transform: translate(0, 0);
   }
   12.5%  {
-    -webkit-transform: translate(-4px, 4px);
     transform: translate(-4px, 4px);
+    -o-transform: translate(-4px, 4px);
+    -ms-transform: translate(-4px, 4px);
+    -moz-transform: translate(-4px, 4px);
+    -webkit-transform: translate(-4px, 4px);
   }
   25%    {
-    -webkit-transform: translate(-8px, 0px);
     transform: translate(-8px, 0px);
+    -o-transform: translate(-8px, 0px);
+    -ms-transform: translate(-8px, 0px);
+    -moz-transform: translate(-8px, 0px);
+    -webkit-transform: translate(-8px, 0px);
   }
   37.5%  {
-    -webkit-transform: translate(-4px, -4px);
     transform: translate(-4px, -4px);
+    -o-transform: translate(-4px, -4px);
+    -ms-transform: translate(-4px, -4px);
+    -moz-transform: translate(-4px, -4px);
+    -webkit-transform: translate(-4px, -4px);
   }
   50%    {
-    -webkit-transform: translate(0, 0);
     transform: translate(0, 0);
+    -o-transform: translate(0, 0);
+    -ms-transform: translate(0, 0);
+    -moz-transform: translate(0, 0);
+    -webkit-transform: translate(0, 0);
   }
   62.5%  {
-    -webkit-transform: translate(4px, 4px);
     transform: translate(4px, 4px);
+    -o-transform: translate(4px, 4px);
+    -ms-transform: translate(4px, 4px);
+    -moz-transform: translate(4px, 4px);
+    -webkit-transform: translate(4px, 4px);
   }
   75%    {
-    -webkit-transform: translate(8px, 0px);
     transform: translate(8px, 0px);
+    -o-transform: translate(8px, 0px);
+    -ms-transform: translate(8px, 0px);
+    -moz-transform: translate(8px, 0px);
+    -webkit-transform: translate(8px, 0px);
   }
   87.5%  {
-    -webkit-transform: translate(4px, -4px);
     transform: translate(4px, -4px);
+    -o-transform: translate(4px, -4px);
+    -ms-transform: translate(4px, -4px);
+    -moz-transform: translate(4px, -4px);
+    -webkit-transform: translate(4px, -4px);
   }
   100%   {
-    -webkit-transform: translate(0, 0);
     transform: translate(0, 0);
+    -o-transform: translate(0, 0);
+    -ms-transform: translate(0, 0);
+    -moz-transform: translate(0, 0);
+    -webkit-transform: translate(0, 0);
   }
 }
 
 @keyframes fadeInDown {
   0% {
     transform: translateY(-35px);
+    -o-transform: translateY(-35px);
+    -ms-transform: translateY(-35px);
+    -moz-transform: translateY(-35px);
     -webkit-transform: translateY(-35px);
     opacity: 0;
   }
   100% {
     transform: translateY(0);
+    -o-transform: translateY(0);
+    -ms-transform: translateY(0);
+    -moz-transform: translateY(0);
     -webkit-transform: translateY(0);
     opacity: 1;
   }
@@ -131,16 +163,6 @@ export default {
   height: 350px;
 }
 
-.fortune {
-  position: relative;
-  height: 100%;
-  width: 100%;
-}
-
-/* input {
-  display: none;
-} */
-
 /* entire container, keeps perspective */
 .fortune-wrapper {
 	perspective: 1000px;
@@ -148,6 +170,9 @@ export default {
 /* flip the pane when hovered */
 .fortune-wrapper.active .fortune-flipper {
   transform: rotateY(180deg);
+  -o-transform: rotateY(180deg);
+  -ms-transform: rotateY(180deg);
+  -moz-transform: rotateY(180deg);
   -webkit-transform: rotateY(180deg);
 }
 
@@ -164,6 +189,12 @@ export default {
   -ms-transform-style: preserve-3d;
   -moz-transform-style: preserve-3d;
 	-webkit-transform-style: preserve-3d;
+}
+
+.fortune {
+  position: relative;
+  height: 100%;
+  width: 100%;
 }
 
 /* hide back of pane during swap */
@@ -188,7 +219,4 @@ export default {
   transform: rotateY(180deg);
   -webkit-transform: rotateY(180deg);
 }
-
-/* ///////////// */
-
 </style>
