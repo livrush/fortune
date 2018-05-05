@@ -39,16 +39,12 @@ export default {
         $('#fortune-wrapper').addClass('active');
         that.flipped = true;
       },
-      // showEmblem() {
-      //   return flipped;
-      // },
       color1: themeColors[0].hues[3],
       color2: themeColors[1].hues[1],
     };
   },
   computed: {
     showEmblem() {
-      console.log(this, this.flipped);
       return this.flipped;
     },
     fortuneStyles() {
