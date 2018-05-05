@@ -16,12 +16,6 @@
 <script>
 import $ from 'jquery';
 
-
-import {
-  // pullRandom,
-  // colors,
-} from './groups';
-
 const colors = require('pafiume-colors');
 
 const color1 = colors.random();
@@ -66,7 +60,6 @@ export default {
     });
   },
 };
-
 </script>
 
 <style>
