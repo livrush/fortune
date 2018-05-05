@@ -19,11 +19,7 @@ import {
   luck,
   verbs,
   groups,
-  colors,
 } from '../groups';
-
-const color1 = pullRandom(colors);
-const color2 = pullRandom(colors);
 
 export default {
   name: 'EmblemNormal',

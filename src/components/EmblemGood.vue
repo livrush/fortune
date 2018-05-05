@@ -12,7 +12,6 @@ import {
   luck,
   verbs,
   groups,
-  colors,
 } from '../groups';
 
   import {
@@ -20,9 +19,6 @@ import {
     goodLineMaker,
     goodCurveMaker,
   } from '../mojsHelpers';
-
-const color1 = pullRandom(colors);
-const color2 = pullRandom(colors);
 
 export default {
   name: 'EmblemNormal',
