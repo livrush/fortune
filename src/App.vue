@@ -16,13 +16,16 @@
 <script>
 import $ from 'jquery';
 
+
 import {
-  pullRandom,
-  colors,
+  // pullRandom,
+  // colors,
 } from './groups';
 
-const color1 = pullRandom(colors);
-const color2 = pullRandom(colors);
+const colors = require('pafiume-colors');
+
+const color1 = colors.random();
+const color2 = colors.random();
 
 export default {
   name: 'app',
