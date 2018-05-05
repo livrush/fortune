@@ -57,16 +57,11 @@ export const fiveWs = [
 
 export const pronouns = {
   subject: ['you', 'he', 'she', 'it', 'we', 'you', 'they'],
-  object: ['me', 'you', 'him', 'her', 'it', 'us', 'you', 'them'],
-  possessive: ['my', 'your', 'his', 'her', 'it', 'our', 'your', 'their'],
-  possessiveAdj: ['mine', 'yours', 'his', 'hers', 'ours', 'yours', 'theirs'],
-  reflexive: ['myself', 'yourself', 'himself', 'herself', 'itself', 'ourselves', 'yourselves', 'themselves'],
+  object: ['you', 'him', 'her', 'it', 'us', 'you', 'them'],
+  possessive: ['your', 'his', 'her', 'it', 'our', 'your', 'their'],
+  possessiveAdj: ['yours', 'his', 'hers', 'ours', 'yours', 'theirs'],
+  reflexive: ['yourself', 'himself', 'herself', 'itself', 'ourselves', 'yourselves', 'themselves'],
 };
-
-export const xx = [
-  'want',
-  '',
-];
 
 export const actions = [
   'mind',
@@ -360,13 +355,10 @@ export const nouns = {
 
 export const determiners = [
   'the',
-  'a',
-  'an',
   'another',
   'no',
   'some',
   'any',
-  'my',
   'our',
   'their',
   'its',
