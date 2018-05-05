@@ -20,19 +20,20 @@
 <script>
 import {
   pullRandom,
+  capitalize,
   luck,
-  verbs,
+  luckVerbs,
   groups,
-  // sentenceStarts,
-  // x,
+  sentenceStarts,
+  fiveWs,
   pronouns,
   preposition,
-  // actions,
-  verbsBase,
-  // verbsPast,
-  verbsPastParticiple,
+  mids,
+  verbs,
   nouns,
   determiners,
+  actions,
+  times,
 } from '../groups';
 
 import EmblemGood from './EmblemGood';
@@ -41,11 +42,18 @@ import EmblemBad from './EmblemBad';
 
 const luckType = pullRandom(luck);
 let emblemType;
-const fortune = `${pullRandom(determiners)} ${pullRandom(nouns)} ${pullRandom(verbsPastParticiple)}
-BECAUSE ${pullRandom(preposition)} ${pullRandom(nouns)} ${pullRandom(verbsPastParticiple)} ${pullRandom(pronouns)}
-AND ${pullRandom(pronouns)} ${pullRandom(verbsBase)} ${pullRandom(preposition)} ${pullRandom(nouns)} .`;
-// const fortune = `${pullRandom(sentenceStarts)} ${pullRandom(x)} ${pullRandom(pronouns)}
-// ${pullRandom(verbsBase)} ${pullRandom(preposition)} ${pullRandom(nouns)} .`;
+const sentences = [
+  `${capitalize(pullRandom(actions))} ${pullRandom(determiners)} ${pullRandom(nouns.idea)}.`,
+
+  `${pullRandom(pronouns.possessive)} ${pullRandom(nouns.person)} has no ${pullRandom(nouns.idea)}.`,
+
+  `${pullRandom(pronouns.possessive)} ${pullRandom(nouns.place)} ${pullRandom(mids)} ${pullRandom(verbs.base)} ${pullRandom(nouns.idea)} ${pullRandom(pronouns.reflexive)}.`,
+
+  `${capitalize(pullRandom(pronouns.subject))} ${pullRandom(verbs.past)} ${pullRandom(nouns.idea)} to ${pullRandom(verbs.base)} ${pullRandom(preposition)} ${pullRandom(determiners)} ${pullRandom(nouns.thing)}.`,
+
+  `${pullRandom(sentenceStarts)} ${pullRandom(fiveWs)} ${pullRandom(pronouns.subject)} ${pullRandom(mids)} ${pullRandom(verbs.base)} ${pullRandom(times)}.`,
+]
+const fortune = sentences.slice(0, 2).join(' ');
 
 switch (luckType) {
   case 'Very Good':
@@ -79,10 +87,9 @@ export default {
   },
   data() {
     const { themeColors } = this;
-    console.warn(this.showEmblem);
     return {
       luck: luckType,
-      verb: pullRandom(verbs),
+      verb: pullRandom(luckVerbs),
       group: pullRandom(groups),
       fortune,
       color1: themeColors[0].hues[3],
