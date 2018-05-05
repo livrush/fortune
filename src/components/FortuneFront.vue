@@ -5,7 +5,7 @@
       <div class="card-flair flair top right" v-bind:style="{ background: color2 }"></div>
       <div class="card-flair flair bottom left" v-bind:style="{ background: color2 }"></div>
       <div class="card-flair flair bottom right" v-bind:style="{ background: color2 }"></div>
-      <div id="emblem" class="emblem">
+      <div id="emblem" class="emblem" v-if="showEmblem">
         <emblem :themeColors="themeColors" />
       </div>
       <h2 class="luck">{{ luck }} Luck</h2>
@@ -67,16 +67,19 @@ switch (luckType) {
     emblemType = EmblemNormal;
 }
 
+
 export default {
   name: 'FortuneFront',
   props: {
     themeColors: Array,
+    showEmblem: Boolean,
   },
   components: {
     emblem: emblemType,
   },
   data() {
     const { themeColors } = this;
+    console.warn(this.showEmblem);
     return {
       luck: luckType,
       verb: pullRandom(verbs),

@@ -6,7 +6,7 @@
           <FortuneBack :themeColors="themeColors" />
         </div>
         <div id="fortune-inner-front" class="fortune-side front">
-          <FortuneFront :themeColors="themeColors" />
+          <FortuneFront :showEmblem="showEmblem" :themeColors="themeColors" />
         </div>
       </div>
     </div>
@@ -19,7 +19,7 @@ import $ from 'jquery';
 import FortuneFront from './FortuneFront';
 import FortuneBack from './FortuneBack';
 
-// let flipped = true;
+// let flipped = false;
 
 export default {
   name: 'Fortune',
@@ -32,15 +32,25 @@ export default {
   },
   data() {
     const { themeColors } = this;
+    const that = this;
     return {
+      flipped: false,
       flip() {
-        $('#fortune-wrapper').toggleClass('active');
+        $('#fortune-wrapper').addClass('active');
+        that.flipped = true;
       },
+      // showEmblem() {
+      //   return flipped;
+      // },
       color1: themeColors[0].hues[3],
       color2: themeColors[1].hues[1],
     };
   },
   computed: {
+    showEmblem() {
+      console.log(this, this.flipped);
+      return this.flipped;
+    },
     fortuneStyles() {
       const { themeColors } = this;
       const color1 = themeColors[0].hues[3];
