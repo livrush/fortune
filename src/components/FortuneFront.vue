@@ -18,6 +18,8 @@
 </template>
 
 <script>
+import _ from 'lodash';
+
 import {
   pullRandom,
   capitalize,
@@ -35,7 +37,6 @@ import {
   actions,
   times,
 } from '../groups';
-
 import EmblemGood from './EmblemGood';
 import EmblemNormal from './EmblemNormal';
 import EmblemBad from './EmblemBad';
@@ -44,16 +45,16 @@ const luckType = pullRandom(luck);
 let emblemType;
 const sentences = [
   `${capitalize(pullRandom(actions))} ${pullRandom(determiners)} ${pullRandom(nouns.idea)}.`,
-
-  `${pullRandom(pronouns.possessive)} ${pullRandom(nouns.person)} has no ${pullRandom(nouns.idea)}.`,
-
-  `${pullRandom(pronouns.possessive)} ${pullRandom(nouns.place)} ${pullRandom(mids)} ${pullRandom(verbs.base)} ${pullRandom(nouns.idea)} ${pullRandom(pronouns.reflexive)}.`,
-
+  `${capitalize(pullRandom(pronouns.possessive))} ${pullRandom(nouns.person)} has no ${pullRandom(nouns.idea)}.`,
+  `${capitalize(pullRandom(pronouns.possessive))} ${pullRandom(nouns.place)} ${pullRandom(mids)} ${pullRandom(verbs.base)} ${pullRandom(nouns.idea)} ${pullRandom(pronouns.reflexive)}.`,
   `${capitalize(pullRandom(pronouns.subject))} ${pullRandom(verbs.past)} ${pullRandom(nouns.idea)} to ${pullRandom(verbs.base)} ${pullRandom(preposition)} ${pullRandom(determiners)} ${pullRandom(nouns.thing)}.`,
-
-  `${pullRandom(sentenceStarts)} ${pullRandom(fiveWs)} ${pullRandom(pronouns.subject)} ${pullRandom(mids)} ${pullRandom(verbs.base)} ${pullRandom(times)}.`,
-]
-const fortune = sentences.slice(0, 2).join(' ');
+  `${capitalize(pullRandom(sentenceStarts))} ${pullRandom(fiveWs)} ${pullRandom(pronouns.subject)} ${pullRandom(mids)} ${pullRandom(verbs.base)} ${pullRandom(times)}.`,
+];
+const fortune = _.chain(sentences)
+  .shuffle()
+  .slice(0, 3)
+  .join(' ')
+  .value();
 
 switch (luckType) {
   case 'Very Good':
